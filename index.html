@@ -1,0 +1,370 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Registro Elettronico</title>	
+	<link rel="icon" href="img/icoVallauri.png" type="image/png"/>
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" charset="utf8"></script>
+	<script src="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"></script>
+	
+	<link rel="stylesheet" href="index.css">
+	<script src="lib/axios.js"></script>		
+	<script src="lib/libreria.js"></script>	
+	<script src="lib/sweetalert2.js"></script>		
+	<script src="index.js"></script>			
+</head>
+
+<body>
+	<div id="wrapper">
+		<div class="row">
+			<div class="container-fluid" id="studente">
+				<nav class="navbar navbar-expand-lg bg-light navbar-light" id="navStudente">		
+					<a class="navbar-brand">
+						<img src="img/logo.png" class="img-fluid" style="width:200px; height: 40px;">
+					</a>	  
+					<ul class="navbar-nav" id="itemStudente">
+						<li class="nav-item active">  
+						  <a class="nav-link" href="#" id="home">Home</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link" href="#" id="voti">Voti</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link" href="#" id="assenze">Assenze</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" id="argomenti">Argomenti</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" id="anagrafico">Anagrafico</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav" id="nominativoStudente">
+						<span id="nominativoStud"></span>
+					</ul>
+					<ul class="navbar-nav ml-auto"> 
+						<li class="nav-item">
+							<span class="input-group-text bg-light"> 
+								<i class="fas fa-user-edit"> </i>
+								<a class="nav-link" href="#" id="btnCambiaPasswordStudente">Cambia Password</a>
+							</span>
+						</li>
+						&nbsp;&nbsp;
+						<li class="nav-item">
+							<span class="input-group-text bg-light"> 
+								<i class="fas fa-sign-out-alt"> </i>
+								<a class="nav-link" href="#" id="btnLogoutStudente">Logout</a>
+							</span>
+					</ul>
+				</nav>
+				<div id="mainWrapper">
+					<div id="infoRegistro">
+						<span>
+							Questa è la visione del <b>REGISTRO ELETTRONICO</b> lato <b>STUDENTE</b>.
+							Qui ti è concessa la <b>VISUALIZZAZIONE</b> dei <b>VOTI</b>, <b>ARGOMENTI</b>, <b>ASSENZE</b> e il tuo <b>ANAGRAFICO</b>.
+							Per accedere alle varie sezioni premere sulle voci poste qui di fianco oppure sopra nella barra di navigazione.
+							Se noti dei problemi o se ci sono dati errati comunicalo alla segreteria della scuola che provvederà a risolverli.
+							Grazie.
+						</span>
+					</div>
+					<div id="sezioni">
+						<div class="col-md-4">
+							<div class="anagrafico">
+								<div class="details">
+									<div class="desc">
+										<h2>Anagrafico</h2>
+									</div>
+								</div>
+								<a class="infoAnagrafico" href="#">VAI AI DATI ANAGRAFICI<i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="argomenti">
+								<div class="details">
+									<div class="desc">
+										<h2>Argomenti</h2>
+									</div>
+								</div>
+								<a class="infoArgomenti" href="#">VAI AI ARGOMENTI<i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="assenze">
+								<div class="details">
+									<div class="desc">
+										<h2>Assenze</h2>
+									</div>
+								</div>
+								<a class="infoAssenze" href="#">VAI ALLE ASSENZE<i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="voti">
+								<div class="details">
+									<div class="desc">
+										<h2>Voti</h2>
+									</div>
+								</div>
+								<a class="infoVoti" href="#">VAI ALLE VALUTAZIONI<i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="wrapperAnagrafico">
+					<div id="imgUser"><img class="rounded-circle"></div>
+					<label><b>Cognome e Nome:</b></label>
+					<span class="input-group-text" style="width: 25%; margin: auto;"> 
+						<i class="fas fa-user"></i>&nbsp;&nbsp;<input type='text' class='form-control' id='txtCognomeNome' readonly>
+					</span>
+					<label><b>Matricola:</b></label>
+					<span class="input-group-text" style="width: 25%; margin: auto;"> 
+						<i class="fas fa-id-card"></i>&nbsp;&nbsp;<input type='text' class='form-control' id='txtMatricola' readonly>
+					</span>
+					<label><b>Classe:</b></label>
+					<span class="input-group-text" style="width: 25%; margin: auto;"> 
+						<i class="fas fa-school"></i>&nbsp;&nbsp;<input type='text' class='form-control' id='txtClasse' readonly>
+					</span>
+					<label><b>Residenza:</b></label>
+					<span class="input-group-text" style="width: 25%; margin: auto;"> 
+						<i class="fas fa-home"></i>&nbsp;&nbsp;<input type='text' class='form-control' id='txtResidenza'>
+					</span>
+					<input type="button" value="Modifica" id="btnModifica">
+					<input type="button" value="Annulla" id="btnAnnulla">
+				</div>
+				<div id="wrapperArgomenti">
+					<h2>Argomenti</h2>
+					<table id="tableArgomenti">
+						<thead>
+							<tr>
+								<th width="25%"> Data </th>
+								<th width="75%"> Argomenti delle lezioni </th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div id="wrapperAssenze">
+					<h2>Assenze</h2>
+					<table id="tableAssenze">
+						<thead>
+							<tr>
+								<th width="33%"> Data </th>
+								<th width="33%"> Tipo assenza </th>
+								<th width="33%"> Giustifica </th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div id="wrapperVoti">
+					<h2>Valutazioni</h2>
+					<table id="tableValutazioni">
+						<thead>
+							<tr>
+								<th width="25%"> Data </th>
+								<th width="25%"> Materia </th>
+								<th width="25%"> Valutazione </th>
+								<th width="25%"> Docente </th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="container-fluid" id="docente">
+				<nav class="navbar navbar-expand-lg bg-light navbar-light" id="navDocente">		
+					<a class="navbar-brand">
+						<img src="img/logo.png" class="img-fluid" style="width:200px; height: 40px;">
+					</a>	  
+					<ul class="navbar-nav" id="itemDocente">
+						<li class="nav-item active">  
+						  <a class="nav-link" href="#" id="home">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" id="anagrafico">Anagrafico</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav" id="nominativoDocente">
+						<span id="nominativoDoc"></span>
+					</ul>
+					<ul class="navbar-nav ml-auto"> 
+						<li class="nav-item">
+							<span class="input-group-text bg-light"> 
+								<i class="fas fa-user-edit"> </i>
+								<a class="nav-link" href="#" id="btnCambiaPasswordDocente">Cambia Password</a>
+							</span>
+						</li>
+						&nbsp;&nbsp;
+						<li class="nav-item">
+							<span class="input-group-text bg-light"> 
+								<i class="fas fa-sign-out-alt"> </i>
+								<a class="nav-link" href="#" id="btnLogoutDocente">Logout</a>
+							</span>
+					</ul>
+				</nav>
+				<div id="classiMaterie">
+					<div>
+						<span><b>CLASSI: </b></span>
+						<select id='lstClassi' name='lstClassi'>
+						</select>
+					</div>
+					<div>
+						<span><b>MATERIE DELLA CLASSE: </b></span>
+						<select id='lstMaterie' name='lstMaterie'>
+						</select>
+					</div>
+				</div>
+				<div id="mainWrapperDocente">
+					<div id="infoRegistro">
+						<span>
+							Questa è la visione del <b>REGISTRO ELETTRONICO</b> lato <b>DOCENTE</b>.
+							Qui ti è concessa la <b>VISUALIZZAZIONE</b> e l'<b>INSERIMENTO</b> dei <b>VOTI</b>, <b>ARGOMENTI</b>, <b>ASSENZE</b> e il tuo <b>ANAGRAFICO</b>.
+							Per accedere alle varie sezioni premere sulle voci poste qui di fianco oppure sopra nella barra di navigazione.
+							Se noti dei problemi o se ci sono dati errati comunicalo alla segreteria della scuola che provvederà a risolverli.
+							Grazie.
+						</span>
+					</div>
+					<div id="sezioni">
+						<div class="col-md-4">
+							<div class="anagrafico">
+								<div class="details">
+									<div class="desc">
+										<h2>Anagrafico</h2>
+									</div>
+								</div>
+								<a class="infoAnagrafico" href="#">VAI AI DATI ANAGRAFICI<i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="argomenti">
+								<div class="details">
+									<div class="desc">
+										<h2>Argomenti</h2>
+									</div>
+								</div>
+								<a class="infoArgomenti" href="#">VAI AI ARGOMENTI<i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="assenze">
+								<div class="details">
+									<div class="desc">
+										<h2>Assenze</h2>
+									</div>
+								</div>
+								<a class="infoAssenze" href="#">VAI ALLE ASSENZE<i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="voti">
+								<div class="details">
+									<div class="desc">
+										<h2>Voti</h2>
+									</div>
+								</div>
+								<a class="infoVoti" href="#">VAI ALLE VALUTAZIONI<i class="fas fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="wrapperAnagraficoDocente">
+					<div id="imgUserDoc"><img class="rounded-circle"></div>
+					<label><b>Cognome e Nome:</b></label>
+					<span class="input-group-text" style="width: 25%; margin: auto;"> 
+						<i class="fas fa-user"></i>&nbsp;&nbsp;<input type='text' class='form-control' id='txtCognomeNomeDocente' readonly>
+					</span>
+					<label><b>Matricola:</b></label>
+					<span class="input-group-text" style="width: 25%; margin: auto;"> 
+						<i class="fas fa-id-card"></i>&nbsp;&nbsp;<input type='text' class='form-control' id='txtMatricolaDocente' readonly>
+					</span>
+					<label><b>Residenza:</b></label>
+					<span class="input-group-text" style="width: 25%; margin: auto;"> 
+						<i class="fas fa-home"></i>&nbsp;&nbsp;<input type='text' class='form-control' id='txtResidenzaDocente'>
+					</span>
+					<input type="button" value="Modifica" id="btnModificaDocente">
+					<input type="button" value="Annulla" id="btnAnnullaDocente">
+				</div>
+				<div id="wrapperVotiDocente">
+					<h2>Valutazioni</h2>
+					<input type="button" value="Inserisci" id="btnInserisciVoto">
+					<table id="valutazioniDocente">
+						<thead>
+							<tr>
+								<th width="25%">Studente</th>
+								<th width="75%">Valutazioni</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<div>
+						<h2>Modifica Voto</h2>
+						<div class='form-group input-group'>
+							<span class='input-group-text'><i class='fas fa-user'></i></span>
+							<input type='text' class='form-control' id='txtStudente' readonly>
+						</div>
+						<div class='form-group input-group'>
+							<span class='input-group-text'><i class='fas fa-id-card'></i></span>
+							<input type='text' class='form-control' id='txtStudMatricola' readonly>
+						</div>
+						<div class='form-group input-group'>
+							<span class='input-group-text'><i class='fas fa-calendar'></i></span>
+							<input type='date' class='form-control' id='dateVoto' readonly>
+						</div>
+						<div class='form-group input-group'>
+							<span class='input-group-text'><i class='fas fa-book'></i></span>
+							<input type='text' class='form-control' id='txtMateria' readonly>
+						</div>
+						<div class='form-group input-group'>
+							<span class='input-group-text'><i class='fas fa-award'></i></span>
+							<input type='text' class='form-control' id='txtVoto'>
+						</div>
+						<input type="button" value="Modifica" id="btnModificaVoto">
+						<input type="button" value="Annulla" id="btnAnnullaVoto">
+						<input type="button" value="Elimina" id="btnEliminaVoto">
+					</div>
+				</div>
+				<div id="wrapperArgomentiDocente">
+					<h2>Argomenti</h2>
+					<input type="button" value="Inserisci" id="btnInserisciArgomenti">
+					<table id="argomentiDocente">
+						<thead>
+							<tr>
+								<th width="25%">Data</th>
+								<th width="75%">Argomenti</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div id="wrapperAssenzeDocente">
+					<h2>Assenze</h2>
+					<input type="button" value="Inserisci" id="btnInserisciAssenze">
+					<table id="assenzeDocente">
+						<thead>
+							<tr>
+								<th width="25%">Studente</th>
+								<th width="75%">Assenze</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

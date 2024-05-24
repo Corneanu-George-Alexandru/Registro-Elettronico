@@ -1,0 +1,15 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.icona-rossa{
+	color: #dc3545;  /* colore usato da is-invalid */
+	border:1px solid #dc3545; 
+	border-right:transparent;
+}
+
+#jumbotron {
+	height: 250px;
+	margin-top: -17.5px;
+}

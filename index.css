@@ -1,0 +1,452 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	text-align: center;
+	font-size: 35pt;
+}
+
+#itemStudente, #itemDocente {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	padding: 5px;
+}
+
+#itemStudente > li > a, #itemDocente > li > a {
+	margin: 5px;
+}
+
+#nominativoStudente, #nominativoDocente {
+	border-right: 1px solid black;
+	padding: 5px;
+	width: 360px;
+}
+
+#nominativoDocente {
+	width: 595px;
+}
+
+#nominativoStud, #nominativoDoc {
+	margin: 15px;
+	width: 100%;
+	text-align: center;
+}
+
+#mainWrapper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 10px;
+}
+
+#classiMaterie {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	margin: 50px;
+}
+
+#lstMaterie, #lstClassi {
+	width: 200px;
+	margin-left: 5px;
+}
+
+#mainWrapperDocente {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 10px;
+}
+
+#infoRegistro {
+	width: 50%;
+}
+
+#sezioni {
+	margin-top: 5px;
+	margin-right: 50px;
+}
+
+#sezioni > div {
+	margin: 10px
+}
+
+.anagrafico {	
+	position: relative;
+	width: 270px;
+	height: 120px;
+	background-color: #d84a38;
+}
+
+.argomenti {
+	position: relative;
+	width: 270px;
+	height: 120px;
+	background-color: #4B77BE;
+}
+
+.assenze {
+	position: relative;
+	width: 270px;
+	height: 120px;
+	background-color: #9B59B6;
+}
+
+.voti {
+	position: relative;
+	width: 270px;
+	height: 120px;
+	background-color: #26C281;
+}
+
+.details {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	padding-right: 15px;
+}
+
+.desc {
+	color: white;
+}
+
+.infoAnagrafico {
+	position: absolute;
+	bottom: 0px;
+	padding-left: 10px;
+	padding-bottom: 2px;
+	color: white;
+	background-color: #d23c29;
+	width: 100%;
+}
+
+.infoArgomenti {
+	position: absolute;
+	bottom: 0px;
+	padding-left: 10px;
+	padding-bottom: 2px;
+	color: white;
+	background-color: #416db4;
+	width: 100%;
+}
+
+.infoAssenze {
+	position: absolute;
+	bottom: 0px;
+	padding-left: 10px;
+	padding-bottom: 2px;
+	color: white;
+	background-color: #924dae;
+	width: 100%;
+}
+
+.infoVoti {
+	position: absolute;
+	bottom: 0px;
+	padding-left: 10px;
+	padding-bottom: 2px;
+	color: white;
+	background-color: #23b176;
+	width: 100%;
+}
+
+.infoAnagrafico:hover, .infoArgomenti:hover, .infoAssenze:hover, .infoVoti:hover {
+	text-decoration: none;
+	color: white;
+}
+
+.infoAnagrafico > i {
+	padding-left: 63px;
+}
+
+.infoArgomenti > i {
+	padding-left: 100px;
+}
+
+.infoAssenze > i {
+	padding-left: 105px;
+}
+
+.infoVoti > i {
+	padding-left: 73px;
+}
+
+#wrapperAnagrafico {
+	text-align: center;
+}
+
+#imgUser {
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+#imgUser > img:hover {
+	cursor: pointer;
+}
+
+#wrapperAnagrafico > label {
+	margin: 15px 0px 15px 0px;
+}
+
+#wrapperAnagrafico > input {
+	margin: 15px 15px 15px 0px;
+	padding: 5px;
+}
+
+#wrapperAssenze {
+	width:70%;
+	margin:10px auto;
+}
+
+#wrapperAssenze > h2 {
+	text-align:center;
+	margin:30px;
+	font-size:20pt;
+}
+
+#tableAssenze {
+	margin:10px auto;
+	border:1px solid black;
+}
+
+#tableAssenze thead th {
+	text-align: center;
+	padding: 5px;
+	color: #6a94d3;
+}
+
+#tableAssenze tbody td {
+	text-align: center;
+}
+
+#wrapperVoti {
+	width:70%;
+	margin:10px auto;
+}
+
+#wrapperVoti > h2 {
+	text-align:center;
+	margin:30px;
+	font-size:20pt;
+}
+
+#tableValutazioni {
+	margin:10px auto;
+	border:1px solid black;
+}
+
+#tableValutazioni thead th {
+	text-align: center;
+	padding: 5px;
+	color: #6a94d3;
+}
+
+#tableValutazioni tbody td {
+	text-align: center;
+}
+
+#wrapperArgomenti {
+	width:70%;
+	margin:10px auto;
+}
+
+#wrapperArgomenti > h2 {
+	text-align:center;
+	margin:30px;
+	font-size:20pt;
+}
+
+#tableArgomenti {
+	margin:10px auto;
+	border:1px solid black;
+}
+
+#tableArgomenti thead th {
+	text-align: center;
+	padding: 5px;
+	color: #6a94d3;
+}
+
+#tableArgomenti tbody td:nth-of-type(1) {
+	text-align: center;
+}
+
+#tableArgomenti tbody td:nth-of-type(2) {
+	text-align: left;
+}
+
+#wrapperAnagraficoDocente {
+	text-align: center;
+}
+
+#imgUserDoc {
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+#imgUserDoc > img:hover {
+	cursor: pointer;
+}
+
+#wrapperAnagraficoDocente > label {
+	margin: 15px 0px 15px 0px;
+}
+
+#wrapperAnagraficoDocente > input {
+	margin: 15px 15px 15px 0px;
+	padding: 5px;
+}
+
+#wrapperArgomentiDocente > h2 {
+	text-align:center;
+	margin:30px;
+	font-size:20pt;
+}
+
+#wrapperAssenzeDocente > h2 {
+	text-align:center;
+	margin:30px;
+	font-size:20pt;
+}
+
+#wrapperVotiDocente {
+	width:70%;
+	margin:10px auto;
+}
+
+#wrapperVotiDocente > h2 {
+	text-align:center;
+	margin:30px;
+	font-size:20pt;
+}
+
+#btnInserisciVoto {
+	padding: 5px;
+	width: 25%;
+	margin: 50px auto;
+	margin-left: 360px;
+}
+
+#valutazioniDocente {
+	margin:10px auto;
+	border:1px solid black;
+}
+
+#valutazioniDocente thead th {
+	text-align: center;
+	padding: 5px;
+	color: #6a94d3;
+}
+
+#valutazioniDocente tbody td {
+	text-align: center;
+	padding: 10px;
+}
+
+#valutazioniDocente tbody td i {
+	padding: 25px;
+}
+
+#valutazioniDocente tbody td i:hover {
+	cursor: pointer;
+}
+
+#wrapperVotiDocente div {
+	text-align: center;
+	margin: 50px auto;
+}
+
+#wrapperVotiDocente div h2 {
+	margin-bottom: 25px;
+}
+
+#wrapperVotiDocente div div {
+	width: 25%;
+	margin: 10px auto;
+}
+
+#btnModificaVoto, #btnAnnullaVoto, #btnEliminaVoto {
+	margin: 15px 15px 15px 0px;
+	padding: 5px;
+}
+
+#wrapperAssenzeDocente {
+	width:70%;
+	margin:10px auto;
+}
+
+#wrapperAssenzeDocente > h2 {
+	text-align:center;
+	margin:30px;
+	font-size:20pt;
+}
+
+#btnInserisciAssenze {
+	padding: 5px;
+	width: 25%;
+	margin: 50px auto;
+	margin-left: 360px;
+}
+
+#assenzeDocente {
+	margin:10px auto;
+	border:1px solid black;
+}
+
+#assenzeDocente thead th {
+	text-align: center;
+	padding: 5px;
+	color: #6a94d3;
+}
+
+#assenzeDocente tbody td {
+	text-align: center;
+	padding: 10px;
+}
+
+#assenzeDocente tbody td i {
+	padding: 25px;
+}
+
+#wrapperArgomentiDocente {
+	width:70%;
+	margin:10px auto;
+}
+
+#wrapperArgomentiDocente > h2 {
+	text-align:center;
+	margin:30px;
+	font-size:20pt;
+}
+
+#btnInserisciArgomenti {
+	padding: 5px;
+	width: 25%;
+	margin: 50px auto;
+	margin-left: 360px;
+}
+
+#argomentiDocente {
+	margin:10px auto;
+	border:1px solid black;
+}
+
+#argomentiDocente thead th {
+	text-align: center;
+	padding: 5px;
+	color: #6a94d3;
+}
+
+#argomentiDocente tbody td {
+	text-align: center;
+	padding: 10px;
+}
+
+#argomentiDocente tbody td i {
+	padding: 25px;
+}
